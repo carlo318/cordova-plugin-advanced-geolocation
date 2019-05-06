@@ -132,7 +132,8 @@ public class AdvancedGeolocation extends CordovaPlugin{
             return true;
         }
         if(action.equals("kill")){
-            onDestroy();
+            // Commented to avoid exception on App close
+            // onDestroy();
             return true;
         }
         else {
@@ -440,13 +441,15 @@ public class AdvancedGeolocation extends CordovaPlugin{
 
     public void onDestroy(){
         Log.d(TAG, "onDestroy");
+        // Commented to avoid exception on App close
+/*
         if(_cordova.getThreadPool() != null){
             stopLocation();
             removeActionPreferences();
             shutdownAndAwaitTermination(_cordova.getThreadPool());
             _cordovaActivity.finish();
         }
-
+*/
         sendCallback(PluginResult.Status.OK,
                 JSONHelper.killLocationJSON());
     }
